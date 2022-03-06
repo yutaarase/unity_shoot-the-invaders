@@ -59,16 +59,15 @@ Projectを開きたい場合は、Unityで開いてください。
 # Others
 **お借りしたコード**
 
-[Colliderを反転させる](https://raspberly.hateblo.jp/entry/2018/09/13/000000)
+* [Colliderを反転させる](https://raspberly.hateblo.jp/entry/2018/09/13/000000)
 ことによってMapの移動制限、いわゆる箱庭を実装するのに使用させて頂きました。
 
 **参考にさせて頂いたサイト**
 
-機体を傾けさせた後、Keyの入力が何もないと
+* 機体を傾けさせた後、Keyの入力が何もないと
 [水平を保たせる](https://kazupon.org/unity-add-torque/)
 力が働き、機体を水平に戻します。この処理を実装させるのに参考にさせて頂きました。
-
-HPバーや熱量メーターの値によって
+* HPバーや熱量メーターの値によって
 [色が変化するSlider](https://capyuse-soft.com/hpbar_color/)
 を実装させるのに参考にさせて頂きました。
 
