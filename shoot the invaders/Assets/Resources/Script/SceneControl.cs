@@ -25,19 +25,31 @@ public class SceneControl : MonoBehaviour
     private const int CLEAR_ID = 5; //クリア
     public int clearNum = 0; //クリアしたステージ番号
     public bool gameClear = false; //ゲームをクリアしたかどうか
+    public AudioClip clickAudio; //選択音
+    public AudioClip BGMAudio; //BGM
     private Button button2; //処理用ボタンインスタンス
     private Text text1, text2; //処理用テキストインスタンス
     private bool getButton; //ボタンを取得したかどうか
     private bool getText; //テキストを取得したかどうか
-
+    private AudioSource [] audioSource = new AudioSource [2]; //0:選択音 1:BGM
+    private bool playBGM; //BGMを再生したかどうか
     
-
     public void Start()
     {
         //現在のIDを初期化 
         //このスクリプトをアタッチしているオブジェクトを破壊不可能にする
         index = SceneManager.GetActiveScene().buildIndex;
         DontDestroyOnLoad(gameObject);
+        playBGM = false;
+        //AudioSourceの取得
+        //演算用変数宣言
+        //インスタンス初期化
+        var AudioSources = gameObject.GetComponents<AudioSource>();
+        int i = 0;
+        foreach(var AudioSource in AudioSources)
+        {
+            audioSource[i++] = AudioSource;
+        }
     }
     public void Update()
     {
@@ -45,6 +57,14 @@ public class SceneControl : MonoBehaviour
         switch (index)
         {
             case TITLE_ID:
+                //BGMを再生していなかったら再生する
+                if (!playBGM)
+                {
+                    audioSource[1].clip = BGMAudio;
+                    audioSource[1].loop = true;
+                    audioSource[1].Play();
+                    playBGM = true;
+                }
                 if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
                 {
                     //画面をクリックしたらステージ選択画面に遷移する
@@ -53,7 +73,8 @@ public class SceneControl : MonoBehaviour
                     getButton = false;
                     getText = false;
                     stageNum = 0;
-
+                    audioSource[0].clip = clickAudio;
+                    audioSource[0].Play();
                 }
                 if (Input.GetKey(KeyCode.Escape))
                 {
@@ -72,6 +93,15 @@ public class SceneControl : MonoBehaviour
                 completeRate = 0;
                 gameClear = false;
                 getText=false;
+
+                //BGMを再生していなかったら再生する
+                if (!playBGM)
+                {
+                    audioSource[1].clip = BGMAudio;
+                    audioSource[1].loop = true;
+                    audioSource[1].Play();
+                    playBGM = true;
+                }
 
                 //何度もボタンオブジェクトを取得しないようにする
                 if (!getButton)
@@ -109,9 +139,11 @@ public class SceneControl : MonoBehaviour
                     case 0:
                         break;
                     case 1:
+                        audioSource[1].Stop();
                         NextScene(STAGE1_ID);
                         break;
                     case 2:
+                        audioSource[1].Stop();
                         NextScene(STAGE2_ID);
                         break;
                 }
@@ -139,6 +171,9 @@ public class SceneControl : MonoBehaviour
                     //各変数初期化
                     getButton = false;
                     stageNum = 0;
+                    playBGM = false;
+                    audioSource[0].clip = clickAudio;
+                    audioSource[0].Play();
                     NextScene(STAGESELECT_ID);
                 }
 
@@ -168,8 +203,8 @@ public class SceneControl : MonoBehaviour
                 }
 
                 //テキストにそれぞれの内容を代入する
-                text1.text = "スコア: " + score;
-                text2.text = "達成率: " + completeRate +" ％";
+                text1.text = "Score:" + score;
+                text2.text = "CompleteRate: " + completeRate +"％";
                 break;
             case CLEAR_ID:
                 //ステージ番号がクリア番号よりおおきかったら
@@ -185,6 +220,9 @@ public class SceneControl : MonoBehaviour
                     //各変数初期化
                     getButton = false;
                     stageNum = 0;
+                    playBGM = false;
+                    audioSource[0].clip = clickAudio;
+                    audioSource[0].Play();
                     NextScene(STAGESELECT_ID);
                 }
 
@@ -214,8 +252,8 @@ public class SceneControl : MonoBehaviour
                 }
 
                 //テキストにそれぞれの内容を代入する
-                text1.text = "スコア: " + score;
-                text2.text = "達成率: " + completeRate +" ％";
+                text1.text = "Score:" + score;
+                text2.text = "CompleteRate: " + completeRate +"％";
                 break;
         }
         //現在のIDを更新
