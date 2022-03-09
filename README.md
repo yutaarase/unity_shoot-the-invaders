@@ -44,9 +44,12 @@
 # Usage
 
 * Projectを開きたい場合は、Unityで開いてください。
-* 各環境実行ファイルは
-[ここからダウンロード](https://github.com/yutaarase/unity_shoot-the-invaders/releases/tag/v1.0.1)
+* 各環境実行ファイルはここから
+[ダウンロード](https://github.com/yutaarase/unity_shoot-the-invaders/releases)
 してください。
+* windows版Buildは複数のファイルで構成されている為、解凍してそのままお使いください。
+* 解凍したフォルダの中にShoot The Invaders.exeという実行ファイルがありますので、それを実行してください。
+* 解凍したフォルダの中身のファイル一つでも削除,破損してしまうと、Play出来なくなりますのでご注意ください。
 
 # Author
 
