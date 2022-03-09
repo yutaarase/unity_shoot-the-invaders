@@ -43,8 +43,10 @@
 
 # Usage
 
-Projectを開きたい場合は、Unityで開いてください。
-
+* Projectを開きたい場合は、Unityで開いてください。
+* 各環境実行ファイルは
+[ここからダウンロード](https://github.com/yutaarase/unity_shoot-the-invaders/releases/tag/v1.0.1)
+してください。
 
 # Author
 
