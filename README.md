@@ -48,7 +48,8 @@
 # Requirement
 
 * 開発環境 : Unity Version 2021.2.2f1
-* 開発期間 : 2週間
+* 開発期間 : 1ヶ月
+* 制作期間 : 2週間
 
 # Usage
 
